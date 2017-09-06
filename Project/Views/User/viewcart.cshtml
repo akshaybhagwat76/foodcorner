@@ -1,0 +1,283 @@
+﻿@{
+    ViewBag.Title = "viewcart";
+    Layout = "~/Views/Shared/User.cshtml";
+}
+@using Project.EDM;
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+
+        var c = "";
+
+
+
+        $(document).on('change', 'input', function () {
+            var t = $(this).attr("id");
+            var gt = 0;
+
+            // alert(t);
+            var qty = $("#" + t).val();
+            // alert(qty);
+            var lastChar = t.substr(t.length - 1);
+            var pric = "oprice" + lastChar;
+            // alert(pric);
+            var price = $("#" + pric).val();
+            // alert(price);
+            var tot = "total" + lastChar;
+            //   alert(tot);
+            // alert(price * qty);
+
+            var gt2 = $('#gtot').val();
+
+            gt2 = gt2 - $("#" + tot).val();
+
+            $("#" + tot).val(price * qty);
+            gt2 = gt2 + parseInt($("#" + tot).val());
+
+            $("#gtot").val(gt2);
+
+            var cc = $("#cnt").val();
+            gt = 0;
+            for (var i = 0; i < cc; i++) {
+
+
+                var tot = "total" + i;
+                var temp = $("#" + total).val();
+
+                alert(temp);
+                gt = gt + parseInt(temp);
+
+            }
+            // alert(gt);
+
+            //alert(gt);
+            $("#gtot").val(gt);
+
+        });
+
+
+        $("#txtqty").change(function () {
+
+            var price = $("#oprice").val();
+            var qty = $("#txtqty").val();
+            alert(price * qty);
+
+            $("#total").val(price * qty);
+        });
+
+    });
+</script>
+@using (Html.BeginForm("viewcart", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <!-- check out -->
+    <div class="checkout">
+        <div class="container">
+            @{
+    int i = 0;
+    int total = 0;
+    var cnt = ViewData["viewcart"] as List<Project.Controllers.UserController.cartdetail>;
+
+            }
+            <h3>My Shopping Bag</h3>
+            <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>Remove</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <input type="hidden" id="cnt" name="record_cnt" value="@cnt.Count" />
+
+                    @foreach (var item in ViewData["viewcart"] as List<Project.Controllers.UserController.cartdetail>)
+                    {
+                        <input type="hidden" name="rid@(i)" value="@item.rid">
+                        <input type="hidden" id="hdnid" name="oid@(i)" value="@item.food_id" />
+
+                        <tr class="rem1">
+                            <td class="invert-closeb">
+                                @*<div class="rem">
+                                        <div class="close1"> </div>
+                                    </div>*@
+                                <a class="btn btn-danger" href="@Url.Action("delcart", "User" , new { id=item.cart_id})">
+                                    <i class="icon-trash icon-white"></i>
+
+                                    Delete
+                                </a>
+
+
+                                <script>
+                                    $(document).ready(function (c) {
+                                        $('.close1').on('click', function (c) {
+                                            $('.rem1').fadeOut('slow', function (c) {
+                                                $('.rem1').remove();
+                                            });
+                                        });
+                                    });
+                                </script>
+                            </td>
+
+                            <td><a hre="single.html"><img src="~/fdimg/@item.food_image" alt=" " height="200px" width="200px" /></a></td>
+                            <td class="invert">
+                                <div class="quantity">
+                                    <div class="quantity-select">
+                                        @*<div class="entry value-minus">&nbsp;</div>*@
+
+                                        @*<div class="entry value">
+                                        *@
+
+                                        <span><input type="number" class="entry" min="1"  name="txtqty@(i)" id="txtqty@(i)" value="1" size="5" /></span>
+
+                                        @*
+                                            </div>*@
+                                        @*<div class="entry value-plus active">&nbsp;</div>*@
+                                    </div>
+                                </div>
+                            </td>
+                            @*
+                                <td><input type="text" name="fid@(i)" id="fid@(i)" value="@item.food_name" /></td>*@
+                            <td class="invert"><font color="orange" size="+1"><b><input type="text" name="name@(i)" id="name@(i)" value="@item.food_name"></b></font></td>
+                            <td class="invert"><font color="orange" size="+1"><b><input type="text" name="price@(i)" id="oprice@(i)" value="@item.food_price" size="5"></b></font></td>
+                            <td class="invert"><font color="orange" size="+1"><b><input type="text" name="tot@(i)" id="total@(i)" value="@item.food_price" style="border:hidden" /></b></font></td>
+                        </tr>
+                        total = total + item.food_price;
+                        i++;
+                    }
+
+
+
+                    <!--quantity-->
+                    <script>
+                        $('.value-plus').on('click', function () {
+                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
+                            divUpd.text(newVal);
+                        });
+
+                        $('.value-minus').on('click', function () {
+                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
+                            if (newVal >= 1) divUpd.text(newVal);
+                        });
+                    </script>
+                    <!--quantity-->
+                </table>
+            </div>
+            <div>
+                <div id="checkout-shipping" style="display: block;">
+                    <h2 class="heading">2. Delivery Address</h2>
+                </div>
+            </div>
+            @{
+                    RestaurantDBEntities shu = new RestaurantDBEntities();
+                    int id1 = int.Parse(Session["userlogin"].ToString());
+                    var s = shu.tblUsers.Where(c => c.user_id == id1).FirstOrDefault();
+                    Session["add"] = s.user_address;
+                    Session["mb"] = s.user_mobile;
+                    string add = Session["add"].ToString();
+                    string mb = Session["mb"].ToString();
+            }
+            <br />
+            <input type="text" name="add" value="@add" />
+            <br />
+            <input type="text" name="mb" value="@mb" maxlength="10" />
+
+            <div class="checkout-left">
+
+                <input type="submit" value="Place Order" class="btn btn-success" />
+
+                <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
+
+                    <h4>
+                        <span><font size="+1"><b>Grand total</b></font></span><br />
+                        <font color="black"><b><input type="text" id="gtot" value="@total" size="15" /></b></font>
+                    </h4>
+
+                    <ul>
+                        @foreach (var item in ViewData["viewcart"] as List<Project.Controllers.UserController.cartdetail>)
+                        {
+                            <li><font color="orange" size="2"><b>@item.food_name</b></font> <i></i><span> <font color="black">@item.food_price</font></span></li>
+
+                        }
+
+                    </ul>
+
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //check out -->
+    <!-- //product-nav -->
+    <!-- footer -->
+    <!-- //footer -->
+    <!-- login -->
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-info">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                    <div class="login-grids">
+                        <div class="login">
+                            <div class="login-bottom">
+                                <h3>Sign up for free</h3>
+                                <form>
+                                    <div class="sign-up">
+                                        <h4>Email :</h4>
+                                        <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">
+                                    </div>
+                                    <div class="sign-up">
+                                        <h4>Password :</h4>
+                                        <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+
+                                    </div>
+                                    <div class="sign-up">
+                                        <h4>Re-type Password :</h4>
+                                        <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+
+                                    </div>
+                                    <div class="sign-up">
+                                        <input type="submit" value="REGISTER NOW">
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="login-right">
+                                <h3>Sign in with your account</h3>
+                                <form>
+                                    <div class="sign-in">
+                                        <h4>Email :</h4>
+                                        <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">
+                                    </div>
+                                    <div class="sign-in">
+                                        <h4>Password :</h4>
+                                        <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                                        <a href="#">Forgot password?</a>
+                                    </div>
+                                    <div class="single-bottom">
+                                        <input type="checkbox" id="brand" value="">
+                                        <label for="brand"><span></span>Remember Me.</label>
+                                    </div>
+                                    <div class="sign-in">
+                                        <input type="submit" value="SIGNIN">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //login -->
+}
+

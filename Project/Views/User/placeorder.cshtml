@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "viewcart";
+    Layout = "~/Views/Shared/User.cshtml";
+}
+<h2>Thanks for your Order</h2>
+<h3>@ViewBag.msg</h3>
+@*<h3>Order complete : to view purchase click here</h3><br /><br />*@
+<center><h2>Order summary</h2></center>
+<center>
+    @using (Html.BeginForm("placeorder", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container">
+            <div class="check">
+                <div class="col-md-6 cart-total">
+                    <a class="continue">Order Detail</a>
+                    <div class="price-details">
+                        @{
+        int i = 0;
+        var total = 0;
+        var cnt = ViewData["place"] as List<Project.Controllers.UserController.useroffer>;
+
+                        }
+
+                        <input type="hidden" id="cnt" name="record_cnt" value="@cnt.Count" />
+
+                        <table>
+                            @foreach (var item in ViewData["place"] as List<Project.Controllers.UserController.useroffer>)
+                            {
+                                <tr>
+                                    @*<td>
+                                        <input type="text" name="orderid@(i)" value="@item.or_id" id="orderid" />
+                                        </td>*@
+
+                                    <td class="col-md-2"><input type=text name="product@(i)" id="product@(i)" value="@item.product" style="border:hidden;background-color:#d3eff8" readonly="readonly" /></td>
+
+                                    <td><img src="/fdimg/@item.o_img" height="100" width="100" /></td>
+                                    <td class="col-md-2"><input type=text name="txtqty@(i)" id="txtqty@(i)" value="@item.qty piece" style="border:hidden;background-color:#d3eff8" readonly="readonly" /></td>
+                                    <td class="col-md-3">subtotal </td>
+                                    <td class="col-md-2"><input type=text name="txttotal@(i)" id="txttotal@(i)" value="@item.total" style="border:hidden;background-color:#d3eff8" readonly="readonly" /></td>
+                                </tr>
+
+                                {
+                                    total = total + int.Parse(item.total);
+                                }
+                            }
+                            <tr>
+                                <td>
+                                    <h3>Cash on delivery..</h3>
+                                </td>
+                                @*<td>
+                                        Options :
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="rdbmode" id="rdbmode1" value="Cash" /> Cash
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="rdbmode" id="rdbmode2" value="Cheque" /> Cheque
+                                    </td>*@
+                            </tr>
+                        </table>
+
+                    </div>
+                    <ul class="total_price">
+                        <li class="last_price"> <h4>TOTAL</h4></li>
+                        <li class="last_price"><input type=text name="gtotal" id="gtotal@(i)" value="@total" style="border:hidden;background-color:#d3eff8" readonly="readonly" /></li>
+                        @*<div class="clearfix"> </div>*@
+                    </ul>
+
+
+                    <div class="clearfix"></div>
+                    <input type="submit" class="btn-success" value="make payment" />
+
+                </div>
+            </div>
+        </div>
+    }
+</center>

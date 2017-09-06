@@ -1,0 +1,112 @@
+﻿@model PagedList.IPagedList<Project.EDM.tblFood>
+
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "totalfood";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+@using PagedList.Mvc;
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        $(".page-number").live("click", function () {
+
+            var page = parseInt($(this).html());
+
+            $.ajax({
+                url: '@Url.Action("totalfood")',
+                data: { "page": page },
+                success: function (data) {
+                    $("#person-list").html(data);
+                }
+            });
+        });
+    });
+</script>
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Rest")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <section class="col-lg-7 connectedSortable">
+                @using Project.EDM
+
+                @{
+                    ViewBag.Title = "";
+                }
+
+                <!--banner-->
+                <div class="banner">
+                    @*<h2>
+                            <a href="@Url.Action("Index","Rest")">Details of foods</a>
+
+                        </h2>*@
+                </div>
+
+                <center>
+                    <center><h2>Food View</h2></center>
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th>Food ID</th>
+                                <th>Restuarant Name</th>
+                                <th>Food Name</th>
+                                <th>Food CategoryName</th>
+                                @*<th>Food SubCategoryName</th>*@
+                                <th>Food Price</th>
+                                <th>Food Date</th>
+                                <th>Food Description</th>
+                                <th>Food Image</th>
+
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in ViewData["p"] as List<Project.Controllers.foods>)
+                        {
+                            <tr>
+                                <th scope="row">@item.f_id</th>
+                                <th>@item.r_name</th>
+                                <th>@item.food_name</th>
+                                <th>@item.category_name</th>
+                                @*<th>@item.subcategory_name</th>*@
+                                <th>@item.food_price</th>
+                                <th>@item.food_date</th>
+                                <th>@item.food_description</th>
+                                <th><img src='@Url.Content("~/fdimg/" + item.food_image)' width="120" height="50" /></th>
+                            </tr>
+                        }
+
+
+
+                    </table>
+                    <br />
+            </section>
+
+        </div>
+    </section>
+</div>
+@*<div style="margin:5px;">
+
+    Page @{Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber }of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("totalfood",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}
+    
+    ))
+
+</div>*@

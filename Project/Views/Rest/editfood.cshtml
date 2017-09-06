@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "editfood";
+    Layout = "~/Views/Shared/Rest.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<script src="/Scripts/jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+@*<script>
+    $(document).ready(function () {
+        alert("hi");
+
+        $('#drp1').change(function () {
+          
+            $.ajax({
+                type: "POST",
+                url: "/Rest/getdata1",
+                data: { id: $("#drp1").val() },
+                dataType: "json",
+                success: function (data) {
+
+                    $("#drp2").empty();
+                    $.each(data, function (key, dept) {
+                        $("#drp2").append("<option value=" + dept.s_id + ">" + dept.subcategory_name + "</option>")
+                    });
+                }
+            });
+        });
+
+    });
+
+</script>*@
+<script>
+    $(document).ready(function () {
+
+        var c = $("#cnt").val();
+        $("#selector1").prop('selectedIndex', c);
+    });
+</script>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+
+
+                <!-- quick email widget -->
+                @using Project.EDM;
+                @using (Html.BeginForm("editfood", "Rest", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    var p = ViewData["e1"] as tblFood;
+
+
+                    <center><h3>EDIT FOOD</h3></center>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Food Name</label>
+                        <input type="text" class="form-control" name="fname" id="exampleInputEmail1" placeholder="Food Name" value="@p.f_name">
+                        <input type="hidden" name="fid" value="@p.f_id" />
+                    </div>
+                    
+                    <div class="form-group">
+                        
+                        <select name="drp1" id="selector1" selectedIndex="2" class="form-control">
+
+                            
+                            @foreach (var item in ViewData["temp"] as List<Project.EDM.tblCategory>)
+                            {
+                                <option value="@item.c_id">
+                                    @item.category_name
+                                </option>
+                            }
+
+                        </select>
+
+                        
+                        @*<select name="drp2" id="drp2">
+                            <option>--SELECT--</option>
+                        </select>*@
+
+                     </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Food Price</label>
+                        <input type="text" class="form-control" name="price" id="exampleInputEmail1" placeholder="Food Name" value="@p.f_price">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Food Date</label>
+                        <input type="text" class="form-control" name="date" id="datepicker" placeholder="Food Date" value="@p.f_date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Food Image</label>
+                        <input type="file" class="form-control" name="image"  placeholder="Food Image" value="@p.f_image">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Food Descriptions</label>
+                        <input type="text" class="form-control" name="desc" placeholder="Food Description" value="@p.f_description">
+                    </div>
+                    <button type="submit">Edit</button>
+                }
+
+            </section>
+
+
+
+        </div>
+        <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "viewpro";
+    Layout = "~/Views/Shared/Rest.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Rest")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+
+                <!-- quick email widget -->
+                @using Project.EDM;
+
+                @{
+                    ViewBag.Title = "details";
+
+                }
+
+                <!--banner-->
+                    
+                <!--//banner-->
+                @using (Html.BeginForm())
+                {
+
+
+                    var item = ViewData["temp"] as Project.EDM.tblRestuarantRegistration;
+                    
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="@Url.Content("~/rest img/" + item.rest_image)" class="img-circle img-responsive"> </div>
+
+       
+                                        <div class=" col-md-9 col-lg-9 ">
+                                            <table class="table table-user-information">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Restuarant Name :</td>
+                                                        <td>@item.r_name</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Address : </td>
+                                                        <td>@item.r_address</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td><a href="#">@item.r_emailid</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Phone Number</td>
+                                                        <td>
+                                                          @item.r_mobileno
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Description</td>
+                                                        <td>
+                                                            @item.r_description+
+                                                        </td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                            <a href=@Url.Action("editpro","Rest") style="margin-left:50px;" class="btn btn-warning">Update Profile</a>
+                                            <a href=@Url.Action("Index","Rest") style="margin-left:50px;" class="btn btn-dropbox">Go Back</a>
+                                        </div>
+                                    </div>
+
+                    
+                }
+
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+

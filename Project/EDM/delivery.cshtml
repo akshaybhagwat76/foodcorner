@@ -1,0 +1,223 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>test11</title>
+    <link href="~/css/checkoutRevamp.css" rel="stylesheet" />
+</head>
+<body>
+    <center>
+        <div>
+            <div id="checkout-shipping" style="display: block;">
+                <h2 class="heading">2. Delivery Address</h2>
+                <div id="addCustEdu" class="userEducation hidden">
+                    <i class="sd-icon-high-importance sd-icon alert-icon"></i>
+                    <span></span>
+                    <i class="fa-close sd-icon-delete-sign edu-close rfloat"></i>
+                </div>
+                <div id="address-form" class="no-display" style="display: block;">
+                    <div class="shipping-address">
+                        <div class="heading-container clearfix">
+                            <a href="javascript:void(0)" id="back-to-saved-address" class="sub-heading pull-right" style="display: none;"><i class="sd-icon sd-icon-previous fnt10"></i>Back To Saved Addresses</a>
+                        </div>
+                        <div id="address-form-error-box" class="no-display">
+                            <div class="conflict-wrapper-header">
+                                <span class="circle-error sd-icon sd-icon-error"></span>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div id="buynow-address-form" class="clearfix" style="display: none;">
+                            <i class="sd-icon sd-icon-high-importance warn-icon lfloat"></i>
+                            <div class="buynow-review-data lfloat">
+                                <p class="buynow-message">You don't have an address saved. Please enter an address.</p>
+                            </div>
+                        </div>
+                        <div id="out-of-stock-form">
+                            <div class="out-of-stock-wrapper" style="display:none">
+                                <div class="out-of-stock-wrapper-header">
+                                    <span class="circle-error sd-icon sd-icon-error"></span>
+                                    <p>Sorry! Following item(s) have gone out of stock. Please remove them and continue to checkout.</p>
+                                </div>
+                                <div class="item-listing"></div>
+                            </div>
+                        </div>
+                        <div id="serviceability-form">
+                            <div class="seller-address-conflict-wrapper" style="display:none">
+                                <div class="conflict-wrapper-header">
+                                    <span class="circle-error sd-icon sd-icon-error"></span>
+                                    <p>Sorry! Current seller of the below item(s) does not deliver to your pin code, try changing the address.</p>
+                                </div>
+                                <div class="item-listing"></div>
+                            </div>
+                        </div>
+                        <form id="shipping-address-form" novalidate="novalidate">
+                            <div class="customer-info">
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl" for="zip">Pincode <span class="require">*</span> </label>
+                                    <input id="zip" data-address-field="pincode" value="null-l" maxlength="6" class="col-xs-7 error" name="zip" placeholder="6 digit pincode" aria-required="true" aria-invalid="true" type="text"><label id="zip-error" class="error" for="zip">Only numbers allowed</label>
+                                </div>
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl" for="fullName">Name <span class="require">*</span> </label>
+                                    <input maxlength="128" data-address-field="recipientName" class="inputbox2 col-xs-7" name="fullName" id="fullName" placeholder="Full Name" aria-required="true" type="text">
+                                </div>
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl" for="address">Address <span class="require">*</span></label>
+                                    <textarea name="address" data-address-field="addressLine1" class="inputbox2 col-xs-7 text-area" id="address" placeholder="Flat/House No. Colony/Street No." aria-required="true"></textarea>
+                                </div>
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl" for="nearestLandmark">Locality/Landmark</label>
+                                    <input maxlength="400" data-address-field="landmark" class="inputbox2 col-xs-7" name="nearestLandmark" id="nearestLandmark" placeholder="Eg. Near Apollo Hospital" type="text">
+                                    <span class="landmark-tooltip"><i class="sd-icon sd-icon-ic-more"></i></span>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-xs-11 city-suggestion">
+                                        <div class="city-suggestion-box no-display" id="city-suggestion-box" style="display: none;">
+                                            <span>
+                                                <div class="city-suggestion-text">
+                                                    Suggested city for given pincode is "<label id="changeCityText">New Delhi</label>"
+
+                                                    <a title="Change" id="changeCity" style="cursor: pointer;"> Change</a>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <label class="col-xs-6 form-lbl" for="city">City <span class="require">*</span> </label>
+                                    <input maxlength="48" data-address-field="city" class="inputbox2 col-xs-7" name="city" id="city" placeholder="City" type="text">
+                                </div>
+                                <div class="row ">
+                                    <label class="col-xs-6 form-lbl" for="state">State <span class="require">*</span></label>
+                                    <input maxlength="48" data-address-field="state" data-error-block="stateReq" class="inputbox2 col-xs-7" name="state" id="state" placeholder="State" type="text">
+                                </div>
+                                <div class="row-top-padding row mobile-section">
+                                    <label class="col-xs-6 form-lbl" for="mobile">Mobile Number </label>
+
+                                    <div class="default-wallet-mobile medium checkbox col-xs-7 pad-lt-0">
+                                        <label>
+                                            <input name="walletMobile" id="walletMobile" checked="checked" type="checkbox"><span class="checkbox-material"><span class="check sd-icon-checkmark"></span></span> Same as registered mobile
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row-bottom-padding row mobile-section">
+                                    <label class="col-xs-6 form-lbl"><span class="require">*</span> </label>
+
+                                    <div class="col-xs-7 mob-box">
+                                        <span class="mobile-prepend col-xs-3">+91</span>
+                                        <input data-address-field="recipientMobile" value="0000000000" class="inputbox2 col-xs-21 valid" maxlength="10" name="mobile" id="mobile" placeholder="10 digit mobile number" aria-required="true" type="text">
+                                        <span class="mobile-tooltip"><i class="sd-icon sd-icon-ic-more"></i></span>
+                                    </div>
+
+                                </div>
+                                <div class="row mobile-section">
+                                    <label class="col-xs-6 form-lbl" for="alternateMobile">Alternate Mobile No. <span class="require">*</span> </label>
+
+
+                                    <div class="col-xs-7 alt-mob-box">
+                                        <span class="mobile-prepend col-xs-3">+91</span>
+                                        <input data-address-field="alternateMobile" class="inputbox2 col-xs-21 valid" maxlength="10" name="alternateMobile" id="alternateMobile" placeholder="10 digit mobile number" type="text">
+                                        <span class="alternate-mobile-tooltip"><i class="sd-icon sd-icon-ic-more"></i></span>
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div class="row address-type-checkbox">
+                                    <label class="col-xs-6  form-lbl">Address Type</label>
+                                    <div class="col-xs-10 pad-lt-0">
+                                        <div class="radio medium radio-black col-xs-12 pad-lt-0">
+                                            <label>
+                                                <input id="home-mobile" name="mobType" value="Home" type="radio">
+                                                <span class="circle"></span>
+                                                <span class="check  sd-icon sd-icon-checkmark"></span>
+                                                Home/Personal
+                                            </label>
+                                        </div>
+                                        <div class="radio medium radio-black col-xs-12 pad-lt-0">
+                                            <label>
+                                                <input id="office-mobile" name="mobType" value="Office" type="radio">
+                                                <span class="circle"></span>
+                                                <span class="check  sd-icon sd-icon-checkmark"></span>
+                                                Office/Commercial
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl"></label>
+
+                                    <div class="make-as-default medium checkbox col-xs-8 pad-lt-0">
+                                        <label>
+                                            <input data-address-field="defaultAddress" name="location" id="location" class="show-ripple" checked="checked" type="checkbox"><span class="checkbox-material"><span class="check sd-icon-checkmark"></span></span> Make this my default address
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-xs-6"></label>
+                                    <button id="delivery-modes-continue" class="rippleWhite btn  col-xs-7" type="button">
+                                        <span class="button-text">SAVE AND CONTINUE</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="confirm-address" style="display: none;">
+                    <div class="heading-container clearfix">
+
+                        <h3 id="current-slides-number" class="sub-heading pull-right"></h3>
+                    </div>
+                    <div id="buynow-address-saved" class="clearfix">
+                        <i class="sd-icon sd-icon-high-importance warn-icon lfloat"></i>
+                        <div class="buynow-review-data lfloat">
+                            <p class="buynow-message">You do not have a default address. Please select an address to proceed.</p>
+                        </div>
+                    </div>
+                    <div id="saved-address-error-box" class="no-display">
+                        <div class="conflict-wrapper-header">
+                            <span class="circle-error sd-icon sd-icon-error"></span>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div id="out-of-stock">
+                        <div class="out-of-stock-wrapper" style="display:none">
+                            <div class="out-of-stock-wrapper-header">
+                                <span class="circle-error sd-icon sd-icon-error"></span>
+                                <p>Sorry! Following item(s) have gone out of stock. Please remove them and continue to checkout.</p>
+                            </div>
+                            <div class="item-listing"></div>
+                        </div>
+                    </div>
+                    <div id="serviceability">
+                        <div class="seller-address-conflict-wrapper" style="display:none">
+                            <div class="conflict-wrapper-header">
+                                <span class="circle-error sd-icon sd-icon-error"></span>
+                                <p>Sorry! Current seller of the below item(s) does not deliver to your pin code, try changing the address.</p>
+                            </div>
+                            <div class="item-listing"></div>
+                        </div>
+                    </div>
+
+                    <div class="slider clearfix">
+                        <ul class="address-slider"></ul>
+                        <div class="owl-buttons">
+                            <div id="slider-prev"></div>
+                            <div id="slider-next"></div>
+                        </div>
+                    </div>
+                    <div class="add-address no-display" style="display: block;">
+                        <button class="rippleGrey btn btn-theme-secondary btn-line"><i class="sd-icon  sd-icon-plus"></i>ADD NEW ADDRESS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

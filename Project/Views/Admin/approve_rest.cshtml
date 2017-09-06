@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "adminindex";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    @{
+        ViewBag.Title = "approve_rest";
+        Layout = "~/Views/Shared/Admin.cshtml";
+    }
+    <br />
+    <h2 align="center"><font color="black"><b>PENDING RESTUARANTS</b></font></h2>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Rest Id</th>
+                <th>Rest Name</th>
+                <th>Rest Mobile No</th>
+                <th>Rest Email Id</th>
+                <th>Rest Address</th>
+                <th>Rest Description</th>
+                <th>Rest Status</th>
+
+            </tr>
+        </thead>
+
+        @foreach (var item in ViewData["app"] as List<Project.EDM.tblRestuarantRegistration>)
+        {
+            <tr>
+
+                <th scope="row">@item.r_id</th>
+                <th scope="row">@item.r_name</th>
+                <th scope="row">@item.r_mobileno</th>
+                <th scope="row">@item.r_emailid</th>
+                <th scope="row">@item.r_address</th>
+                <th scope="row">@item.r_description</th>
+                <th scope="row">@item.r_status</th>
+
+                <td><a href="/Admin/approve/@item.r_id"><font color="green"><b>Approve</b></font></a></td>
+                <td><a href="/Admin/approve/@item.r_id"><font color="red"><b>Reject</b></font></a></td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+<!-- /.content-wrapper -->

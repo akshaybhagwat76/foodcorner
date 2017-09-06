@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "detailfood";
+    Layout = "~/Views/Shared/Rest.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Rest")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+
+                <!-- quick email widget -->
+                @using Project.EDM;
+
+                @{
+                    ViewBag.Title = "details";
+
+                }
+
+                <!--banner-->
+                <div class="banner">
+                    <h2>
+                        <a href="@Url.Action("Index","Rest")">Details of Foods</a>
+
+                    </h2>
+                </div>
+                <!--//banner-->
+                @using (Html.BeginForm())
+                {
+
+
+                    var item = ViewData["dtl"] as Project.Controllers.foods;
+
+                    <div class="form-control">
+                        <label class="header">Food Name :</label>
+                        <label id="firstname" name="cname"> @item.food_name</label>
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <label class="header">Category Name :</label>
+                        <label name="cimage">@item.category_name</label>
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <label class="header">SubCategory Name :</label>
+                        <label id="email" name="ngo_descr">@item.subcategory_name</label>
+                    </div>
+                    <br />
+
+                    <div class="form-control">
+                        <label class="header">Food Price:</label>
+                        <label class="lock" name="ngo_email">@item.food_price</label>
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <label class="header">Food Date:</label>
+                        <label class="lock" name="ngo_email">@item.food_date</label>
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <label class="header">Food Descriptions:</label>
+                        <label class="lock" name="ngo_email">@item.food_description</label>
+                    </div>
+                    <br />
+                    <div class="form-control" style="height:100px;">
+                        <label class="header" style="width:1000px;">Food Image:</label>
+                        <th><img src='@Url.Content("~/catimg/"+item.food_image)' width="120" height="50" /></th>
+                    </div>
+                    @Html.ActionLink("Back to categories", "category");
+                    <br />
+
+                }
+
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

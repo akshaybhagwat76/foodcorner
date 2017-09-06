@@ -1,0 +1,195 @@
+﻿@{
+    ViewBag.Title = "userindex";
+    Layout = "~/Views/Shared/User.cshtml";
+}
+
+<!-- banner(slider) -->
+<div class="banner-grid">
+    <div id="visual">
+        <div class="slide-visual">
+            <!-- Slide Image Area (1000 x 424) -->
+            <ul class="slide-group">
+                <li><img class="img-responsive" src="~/images/img1.jpg" width="1000" height="500" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="~/images/img2.jpg" width="1000" height="500" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="~/images/img3.jpg" width="1000" height="500" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="~/images/img4.jpg" width="1000" height="500" alt="Dummy Image" /></li>
+            </ul>-
+
+            <!-- Slide Description Image Area (316 x 328) -->
+            @*<div class="script-wrap">
+                    <ul class="script-group">
+                        <li><div class="inner-script"><img class="img-responsive" src="~/images/img1.jpg" alt="Dummy Image" /></div></li>
+                        <li><div class="inner-script"><img class="img-responsive" src="~/images/img1.jpg" alt="Dummy Image" /></div></li>
+                        <li><div class="inner-script"><img class="img-responsive" src="~/images/img1.jpg" alt="Dummy Image" /></div></li>
+                    </ul>
+                    <div class="slide-controller">
+                        <a href="#" class="btn-prev"><img src="..//images/btn_prev.png" alt="Prev Slide" /></a>
+                        <a href="#" class="btn-play"><img src="..//images/btn_play.png" alt="Start Slide" /></a>
+                        <a href="#" class="btn-pause"><img src="..//images/btn_pause.png" alt="Pause Slide" /></a>
+                        <a href="#" class="btn-next"><img src="..//images/btn_next.png" alt="Next Slide" /></a>
+                    </div>
+                </div>*@
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <script type="text/javascript" src="..//js/pignose.layerslider.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(window).load(function () {
+            $('#visual').pignoseLayerSlider({
+                play: '.btn-play',
+                pause: '.btn-pause',
+                next: '.btn-next',
+                prev: '.btn-prev'
+            });
+        });
+        //]]>
+    </script>
+
+</div>
+<!-- //banner(slider) -->
+<!-- content -->
+<div class="new_arrivals">
+    <div class="container">
+        <h3><span>NEW </span>POPULER ITEM</h3>
+        @*<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>*@
+        <div class="new_grids">
+
+            <div class="col-md-4 new-gd-left">
+                <img src="~/images/p7.jpg" alt=" " />
+                <div class="wed-brand simpleCart_shelfItem">
+                    <h4>Foooood Collections</h4>
+                    <h5>Flat 50% Discount</h5>
+                    <p><i>₹50</i> <span class="item_price">₹25</span><a class="item_add hvr-outline-out button2" href="@Url.Action("payment","User")">BUY NOW </a></p>
+                </div>
+            </div>
+            <div class="col-md-4 new-gd-middle">
+                <div class="new-levis">
+                    <div class="mid-img">
+                        <img src="~/images/pl1.png" alt=" " />
+                    </div>
+                    <div class="mid-text">
+                        <h4>up to 40% <span>off</span></h4>
+                        <a class="hvr-outline-out button2" href="@Url.Action("payment","User")">BUY NOW </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="new-levis">
+                    <div class="mid-text">
+                        <h4>up to 50% <span>off</span></h4>
+                        <a class="hvr-outline-out button2" href="@Url.Action("payment","User")">BUY NOW </a>
+                    </div>
+                    <div class="mid-img">
+                        <img src="~/images/pl2.png" alt=" " />
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4 new-gd-left">
+                <img src="~/images/p8.jpg" alt=" " />
+                <div class="wed-brand simpleCart_shelfItem">
+                    <h4>Foooood Collections</h4>
+                    <h5>Flat 50% Discount</h5>
+                    <p><i>₹50</i> <span class="item_price">₹25</span><a class="item_add hvr-outline-out button2" href=@Url.Action("payment","User")>BUY NOW </a></p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- //content -->
+<!-- content-bottom -->
+<div class="content-bottom">
+    <div class="col-md-7 content-lgrid">
+        <div class="col-sm-6 content-img-left text-center">
+            <div class="content-grid-effect slow-zoom vertical">
+                <div class="img-box"><img src="~/images/pl3.jpg" alt="image" class="img-responsive zoom-img"></div>
+                <div class="info-box">
+                    <div class="info-content simpleCart_shelfItem">
+                        <h4>Chines Food</h4>
+                        <span class="separator"></span>
+                        <p><span class="item_price">₹500</span></p>
+                        <span class="separator"></span>
+                        <a class="item_add hvr-outline-out button2" href="@Url.Action("payment","User")">BUY NOW </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 content-img-right">
+            <h3>Special Offers and 50%<span>Discount On</span>Chinies Food's</h3>
+        </div>
+
+        <div class="col-sm-6 content-img-right">
+            <h3>Buy 1 get 1  free on <span> Today's</span> Food</h3>
+        </div>
+        <div class="col-sm-6 content-img-left text-center">
+            <div class="content-grid-effect slow-zoom vertical">
+                <div class="img-box"><img src="~/images/pl4.jpg" alt="image" class="img-responsive zoom-img"></div>
+                <div class="info-box">
+                    <div class="info-content simpleCart_shelfItem">
+                        <h4>Food's</h4>
+                        <span class="separator"></span>
+                        <p><span class="item_price">$250</span></p>
+                        <span class="separator"></span>
+                        <a class="item_add hvr-outline-out button2" href="@Url.Action("payment","User")">BUY NOW </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-5 content-rgrid text-center">
+        <div class="content-grid-effect slow-zoom vertical">
+            <div class="img-box"><img src="~/images/p5.jpg" height="300px" alt="image" class="img-responsive zoom-img"></div>
+            <div class="info-box">
+                <div class="info-content simpleCart_shelfItem">
+                    <h4>Food rool</h4>
+                    <span class="separator"></span>
+                    <p><span class="item_price">₹150</span></p>
+                    <span class="separator"></span>
+                    <a class="item_add hvr-outline-out button2" href="@Url.Action("payment","User")">BUY NOW </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!-- //content-bottom -->
+<!-- product-nav -->
+
+<div class="product-easy">
+    <div class="container">
+
+        <script src="..//js/easyResponsiveTabs.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#horizontalTab').easyResponsiveTabs({
+                    type: 'default', //Types: default, vertical, accordion
+                    width: 'auto', //auto or any width like 600px
+                    fit: true   // 100% fit in a container
+                });
+            });
+
+        </script>
+        <div class="sap_tabs">
+            <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                <ul class="resp-tabs-list">
+                    <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Food product</span></li>
+                    <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Special Offers</span></li>
+                    <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Collections</span></li>
+                </ul>
+
+                @*//Food Product//*@
+
+                <div class="resp-tabs-container">
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- // product-nav -->

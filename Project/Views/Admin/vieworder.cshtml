@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "vieworder";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("adminindex","Admin")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <section class="col-lg-7 connectedSortable">
+                @using Project.EDM
+
+                @{
+                    ViewBag.Title = "";
+                }
+
+                <!--banner-->
+                <div class="banner">
+                    @*<h2>
+                            <a href="@Url.Action("Index","Rest")">Details of foods</a>
+
+                        </h2>*@
+                </div>
+                <!--//banner-->
+                <!--banner-->
+                <div class="banner">
+                    <h2>
+                        <a href="@Url.Action("adminindex","Admin")">Home</a><br />
+
+                        @*@Html.ActionLink("Add Foods", "addfood", null, new { @class = "btn-add" })*@
+
+                    </h2>
+
+                </div>
+                <!--//banner-->
+                <center>
+                    <center><h2>Order Details Of Restaurants</h2></center>
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+
+
+                                <th>From User</th>
+                                <th>Food Name</th>
+                                <th>Restaurant Name</th>
+                                <th>
+                                    Food<br />
+                                    Image
+                                </th>
+                                <th>Order Quantity</th>
+                                <th>Order Date</th>
+                                <th>Order Amount</th>
+                                <th>Order Status</th>
+                               @* <th>Payment Status</th>*@
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in ViewData["orderdtls"] as List<Project.Controllers.orders>)
+                        {
+
+                            <tr>
+                                <th scope="row" name="t1">@item.username</th>
+                                <th>@item.foodname</th>
+                                <th>@item.rest_name</th>
+                                <th><img src='@Url.Content("/fdimg/" + item.image)' width="120" height="50" /></th>
+
+                                <th>@item.orderquantity</th>
+                                <th>@item.date</th>
+                                <th>@item.orderprice</th>
+                                <th>@item.orderstatus</th>
+                                <th>@item.paymentstatus</th>
+
+
+
+
+
+                                <input type="hidden" name="h1" value="@item.order_id" />
+                                <th></th>
+
+
+
+
+                                @*<th>@Html.ActionLink("Delete", "deletefood", new { id = item.f_id })</th>
+                                    <th>@Html.ActionLink("Details", "detailfood", new { id = item.f_id })</th>*@
+                                <br />
+                                <br />
+
+
+                            </tr>
+
+
+
+                        }
+
+                    </table>
+
+                </center>
+
+            </section>
+        </div>
+    </section>
+</div>

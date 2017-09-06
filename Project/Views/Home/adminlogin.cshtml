@@ -1,0 +1,45 @@
+﻿
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+
+
+
+
+    <link href="~/css/style2.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>Login</h1>
+            </div>
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                <div class="login-form">
+                    <div class="control-group">
+                        <input type="text" class="login-field" value="" name="f1"  placeholder="username" id="login-name">
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="control-group">
+                        <input type="password" class="login-field" value="" name="f2" placeholder="password" id="login-pass">
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+
+                    @*<a class="btn btn-primary btn-large btn-block">login</a>*@
+
+                    <input type="submit" value="Login" class="btn btn-primary btn-large btn-block" />
+
+                </div>
+            }
+        </div>
+</body>
+
+
+</html>

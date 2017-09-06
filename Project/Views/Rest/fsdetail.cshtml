@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "fsdetail";
+    Layout = "~/Views/Shared/Rest.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Rest")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+
+                <!-- quick email widget -->
+                @using Project.EDM;
+
+                @{
+                    ViewBag.Title = "fsdetail";
+
+                }
+
+
+                <!--banner-->
+                <div class="banner">
+                    <h2>
+                        <a href="@Url.Action("Index","Rest")">Home</a><br />
+                        @*<a href="@Url.Action("addsubcategory","Admin")">Add SubCategory</a>*@
+                        <a href="@Url.Action("specials", "Rest")" class="btn btn-info">Add Special food</a>
+
+                    </h2>
+                </div>
+                <!--//banner-->
+                <center>
+                    <center><h2>My Special products</h2></center>
+
+
+                    <table class="table">
+
+
+                        @*<tr>
+                                <td>
+                                    Search : <input type="text" id="txt" /><input type="button" value="search" id="btn" />
+                                    <input type="button" value="Get All Users" id="btn1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div id="update">
+
+                                    </div>
+                                </td>
+                            </tr>*@
+                        <tr>
+
+                            <th>Offer ID</th>
+                            <th>Offer Name</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Image </th>
+                            <th>Offer Price</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+
+                        @foreach (var item in ViewData["spc"] as List<Project.EDM.tblSpecial>)
+                        {
+
+                            <tr>
+                                <th>@item.offer_id</th>
+                                <th>@item.f_name</th>
+                                <th>@item.start_date</th>
+                                <th>@item.end_date</th>
+                                <th><img src='@Url.Content("~/scpimg/"+item.offer_image)' width="120" height="50" /></th>
+
+
+                                <th>@item.offer_price</th>
+                                <th>@item.offer_desc</th>
+                                <th>@item.status</th>
+                                <th></th>
+
+
+                                <th>@Html.ActionLink("Edit", "editspecials", new { id = item.offer_id })</th>
+                                <th>@Html.ActionLink("Delete", "delspecials", new { id = item.offer_id })</th>
+                               
+                            </tr>
+
+
+                        }
+
+                    </table>
+                    <br />
+                   
+                </center>
+
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>

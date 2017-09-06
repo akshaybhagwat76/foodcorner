@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/Homepage.cshtml";
+}
+<!-- contact -->
+
+<div class="contact">
+    <div class="container">
+        <div class="contact-grids">
+            <div class="col-md-4 contact-grid text-center animated wow slideInLeft" data-wow-delay=".5s">
+                <div class="contact-grid1">
+                    <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+                    <h4>Address</h4>
+                    <p>12K Street, 45 Building Road <span>New York City.</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 contact-grid text-center animated wow slideInUp" data-wow-delay=".5s">
+                <div class="contact-grid2">
+                    <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
+                    <h4>Call Us</h4>
+                    <p>+1234 758 839<span>+1273 748 730</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 contact-grid text-center animated wow slideInRight" data-wow-delay=".5s">
+                <div class="contact-grid3">
+                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                    <h4>Email</h4>
+                    <p><a href="mailto:info@example.com">info@example1.com</a><span><a href="mailto:info@example.com">info@example2.com</a></span></p>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="map wow fadeInDown animated" data-wow-delay=".5s">
+            <h3 class="tittle">View On Map</h3>
+            <iframe src="http://maps.google.com/maps/api/staticmap?center=48.00,9.00&zoom=14&size=512x512&maptype=roadmap&markers=color:blue|48.0,9.0&sensor=true" frameborder="0" style="border:0"></iframe>
+        </div>
+        <h3 class="tittle">Contact Form</h3>
+        @using (Html.BeginForm("email", "Home", FormMethod.Post))
+        {
+
+
+            <div class="contact-form2">
+                <input type="text" value="Name" name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+                <input type="email" value="Email" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                <textarea type="text" name="msg" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+                <input type="submit" value="Submit">
+            </div>
+        }
+    </div>
+</div>
+
+<!-- //contact -->
+<!-- //product-nav -->

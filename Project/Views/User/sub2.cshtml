@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "userindex";
+    Layout = "~/Views/Shared/User.cshtml";
+}
+
+
+
+<h2>subcategory_view</h2>
+<div class="product-easy">
+    <div class="container">
+
+        <script src="..//js/easyResponsiveTabs.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#horizontalTab').easyResponsiveTabs({
+                    type: 'default', //Types: default, vertical, accordion
+                    width: 'auto', //auto or any width like 600px
+                    fit: true   // 100% fit in a container
+                });
+            });
+
+        </script>
+        <div class="sap_tabs">
+            <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                <ul class="resp-tabs-list">
+                    <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Food product</span></li>
+                    <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Special Offers</span></li>
+                    <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Collections</span></li>
+                </ul>
+
+                @*//Food Product//*@
+
+                <div class="resp-tabs-container">
+                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+                        @foreach (var item in ViewData["foods_li"] as List<Project.Controllers.subc>)
+                        {
+                            <div class="col-md-3 product-men">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item">
+                                        <img src="/catimg/subcatimg/@item.s_img" alt="" class="pro-image-front" height="220px">
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href='@Url.Action("sub")' class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+                                        @*<span class="product-new-top">New</span>*@
+
+                                    </div>
+                                    <div class="item-info-product ">
+                                        <h4>@item.s_name</h4>
+                                        <div class="info-product-price">
+                                            <span class="item_price">item.subcategory_price</span>
+                                            <del>item.subcategory_price</del>
+                                        </div>
+                                        <a href="@Url.Action("userlogin")" class="item_add single-item hvr-outline-out button2">BUY NOW</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

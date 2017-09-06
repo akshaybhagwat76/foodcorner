@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+@*<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("adminindex","Admin")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="col-lg-7 connectedSortable">
+
+        <!-- quick email widget -->
+        @using Project.EDM;
+
+        @{
+            ViewBag.Title = "cat";
+
+        }
+
+        <!--banner-->
+        <div class="banner">
+            <h2>
+                <a href="@Url.Action("adminindex","Admin")">Home</a>
+
+            </h2>
+        </div>
+        <!--//banner-->
+        <center>
+            <center><h2>Category View</h2></center>
+
+
+            <table class="table">
+                <center>
+                    <thead>
+                        <tr>
+
+                            <th>Sub Category ID</th>
+                            <th>Sub Category Name</th>
+                            <th>Sub Category Code</th>
+                            <th>Sub Category Image</th>
+                            <th>Sub Category Price</th>
+
+
+
+
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in ViewData["del"] as List<Project.EDM.tblSubcategory>)
+                        {
+                            <center>
+                                <tr>
+                                    <th scope="row">@item.s_id</th>
+                                    <th>@item.subcategory_name</th>
+                                    <th>@item.subcategory_code</th>
+                                    <th>@item.subcategory_image</th>
+                                    <th>@item.subcategory_price</th>
+                                     
+                                    <th>@Html.ActionLink("Edit", "editsubcategory", new { id = item.s_id })</th>
+                                    <th>@Html.ActionLink("Delete", "delete_subcategory", new { id = item.s_id })</th>
+                                    <th>@Html.ActionLink("Details", "subcategory", new { id = item.s_id })</th>
+
+
+
+                                </tr>
+                            </center>
+
+                        }
+
+            </table>
+        </center>
+        </center>
+    </section>
+
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->*@

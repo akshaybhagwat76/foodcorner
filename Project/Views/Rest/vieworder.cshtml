@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "vieworder";
+    Layout = "~/Views/Shared/Rest.cshtml";
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#btn').hide();
+
+        $('#p1').change(function () {
+
+            $('#btn').show();
+            var p = $('#p1').val();
+            if (p == "--Select--") {
+                $('#btn').hide();
+            }
+
+        });
+
+    });
+</script>
+
+@using (Html.BeginForm("vieworder", "Rest", FormMethod.Post))
+{
+
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Rest")"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="row">
+                <style>
+                    .row {
+                        width: 1000px;
+                    }
+                </style>
+                <section class="col-lg-7 connectedSortable">
+                    @using Project.EDM
+
+                    @{
+    ViewBag.Title = "";
+                    }
+
+                    <!--banner-->
+                    <div class="banner">
+                        @*<h2>
+                                <a href="@Url.Action("Index","Rest")">Details of foods</a>
+
+                            </h2>*@
+                    </div>
+                    <!--//banner-->
+                    <!--banner-->
+                    <div class="banner">
+                        <h2>
+                            <a href="@Url.Action("Index","Rest")">Home</a><br />
+
+                            @*@Html.ActionLink("Add Foods", "addfood", null, new { @class = "btn-add" })*@
+
+                        </h2>
+
+                    </div>
+                    <!--//banner-->
+                    <center>
+                        <center><h2>Order Details</h2></center>
+                        <table class="table">
+
+                            <thead>
+                                <tr>
+
+
+                                    <th>From User</th>
+                                    <th>Food Name</th>
+                                    <th>
+                                        Food<br />
+                                        Image
+                                    </th>
+                                    <th>Order Quantity</th>
+                                    <th>Order Date</th>
+                                    <th>Order Amount</th>
+                                    <th>Order Status</th>
+                                    <th>Assign Order</th>
+                                </tr>
+                            </thead>
+
+                            @foreach (var item in ViewData["viewo"] as List<Project.Controllers.orders>)
+                            {
+
+
+                                <tr>
+                                    <th scope="row" name="t1">@item.username</th>
+                                    <th>@item.foodname</th>
+                                    <th><img src='@Url.Content("/fdimg/" + item.image)' width="120" height="50" /></th>
+
+                                    <th>@item.orderquantity</th>
+                                    <th>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", @item.date))</th>
+                                    <th>@item.orderprice</th>
+                                    <th>@item.orderstatus</th>
+                                    <th>
+
+                                        <select name="drp" class="form-control" id="p1" style="width:150px; color:darkcyan" required="required">
+                                            <option>--Select--</option>
+                                            @foreach (var item1 in ViewData["p"] as List<Project.EDM.tblDeliveryboy>)
+                                            {
+
+
+                                                <option value="@item1.db_id">@item1.db_name</option>
+
+                                            }
+                                        </select>
+
+                                        
+                                    </th>
+                                    <th>
+                                       
+
+                                    </th>
+
+
+
+
+                                    <th></th>
+
+
+                                    @*                                <th><a href="@Url.Action("assignedorders", "Rest", new { id = item.order_id })">Assign</a></th>*@
+                                    @* <th><button type="button" href="@Url.Action("assignedorders", "Rest")" id=" btn" onclick="return vali()">Assign</button></th>*@
+
+                                    @*<th>@Html.ActionLink("Delete", "deletefood", new { id = item.f_id })</th>
+                                        <th>@Html.ActionLink("Details", "detailfood", new { id = item.f_id })</th>*@
+                                    <th><button type="submit" class="btn btn-primary" id="btn">Assign <i class="glyphicon glyphicon-bell"></i></button></th>
+                                    <br />
+                                    <br />
+
+
+                                </tr>
+
+    <input type="hidden" name="h1" value="@item.serialno" />
+
+
+                            }
+
+                        </table>
+
+
+
+                </section>
+            </div>
+        </section>
+    </div>
+
+
+}

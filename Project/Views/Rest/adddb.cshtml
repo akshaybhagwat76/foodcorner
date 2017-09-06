@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "addfood";
+    Layout = "~/Views/Shared/Rest.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Rest")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- working column -->
+
+            <section class="col-lg-7 connectedSortable">
+
+                @model Project.EDM.tblDeliveryboy
+
+                @{
+                    ViewBag.Title = "adddb";
+                    Layout = "~/Views/Shared/Rest.cshtml";
+                }
+
+                <h2> Add Delivery Boy</h2>
+
+                @using (Html.BeginForm("adddb", "Rest", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+
+
+                    <input type="text" placeholder="Name" name="t1" required="" class="form-control" />
+                    
+                    <br />
+
+                    <input type="text" placeholder="Mobile" name="t2" required="" class="form-control" />
+                        <br />
+
+                        <button type="submit" class="btn-lg">Add</button>
+                        <br />
+                        @Html.ActionLink("Back to Details", "dbdetail")
+                }
+
+            </section>
+        </div>
+     
+
+    </section>
+
+
+    <!-- /.row (main row) -->
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

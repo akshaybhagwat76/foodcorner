@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "adminindex";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+@model PagedList.IPagedList<Project.EDM.tblCategory>
+@using PagedList.Mvc;
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("adminindex","Admin")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+
+                <!-- quick email widget -->
+                @*@using (Html.BeginForm("category", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+               
+
+                <!--banner-->
+                <div class="banner">
+                    <h2>
+                        <a href="@Url.Action("adminindex","Admin")">Home</a><br />
+                        @*<button type="button" window.location.href="@Url.Action("addcategory", "Admin")" class="btn btn-info">Add FOODS</button>*@
+                       <a href="@Url.Action("addcategory", "Admin")" class="btn btn-info">Add</a>
+                    </h2>
+                </div>
+                <!--//banner-->
+               
+                <center>
+                    <center><h2>Category View</h2></center>
+
+
+                    <table class="table">
+
+
+                        @*<tr>
+                        <td>
+                            Search : <input type="text" id="txt" /><input type="button" value="search" id="btn" />
+                            <input type="button" value="Get All Users" id="btn1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="update">
+
+                            </div>
+                        </td>
+                    </tr>*@
+                        <tr>
+
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Category Code</th>
+                            <th>Category Image </th>
+                            <th>Category Price</th>
+
+                        </tr>
+
+                        @foreach (var item in ViewData["cat"] as List<Project.EDM.tblCategory>)
+                        {
+
+                            <tr>
+                                <th>@item.c_id</th>
+                                <th>@item.category_name</th>
+                                <th>@item.category_code</th>
+                                <th><img src='@Url.Content("~/catimg/" + item.category_image)' width="120" height="50" /></th>
+                                <th>@item.category_price</th>
+
+
+
+                                <th>@Html.ActionLink("Edit", "edit_category", new { id = item.c_id })</th>
+                                <th>@Html.ActionLink("Delete", "delete_category", new { id = item.c_id })</th>
+                                <th>@Html.ActionLink("Details", "detail_category", new { id = item.c_id })</th>
+
+
+
+                            </tr>
+
+
+                        }
+
+                    </table>
+                    <br />
+                    
+
+
+
+                @Html.PagedListPager(Model, page => Url.Action("category",
+                      new { page, pageSize = Model.PageSize}
+            ))
+             Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount
+                </center>
+
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

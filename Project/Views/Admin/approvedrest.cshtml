@@ -1,0 +1,208 @@
+﻿@{
+    ViewBag.Title = "approvedrest";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <br />
+    <h2 align="center"><font color="black"><b>RESTUARANT APPROVED</b></font></h2>
+
+    <center>
+        <table class="table" id="t1">
+            <thead>
+                <tr>
+
+                    <th>Rest Id</th>
+                    <th>Rest Name</th>
+                    <th>Rest Mobile No</th>
+                    <th>Rest Email Id</th>
+                    <th>Rest Address</th>
+                    <th>Rest Description</th>
+
+
+                </tr>
+            </thead>
+
+    </center>
+    @foreach (var item in ViewData["rest1"] as List<Project.EDM.tblRestuarantRegistration>)
+    {
+        <tr>
+
+            <th scope="row">@item.r_id</th>
+            <th scope="row">@item.r_name</th>
+            <th scope="row">@item.r_mobileno</th>
+            <th scope="row">@item.r_emailid</th>
+            <th scope="row">@item.r_address</th>
+            <th scope="row">@item.r_description</th>
+            <td>
+                <a href="/Admin/delrest/@item.r_id">DELETE</a>
+                @*<label class="switch">
+                        <input type="checkbox" id="d1" checked>
+                        <div class="slider round"></div>
+                    </label>*@
+                @*</a>*@
+            </td>
+
+        </tr>
+        <input type="hidden" value="@item.r_id" id="bl" />
+    }
+
+    </table>
+
+
+    @*<center>
+                <h1>Blocked restuarants</h1>
+                <table class="table" id="t1">
+                    <thead>
+                        <tr>
+
+                            <th>Rest Id</th>
+                            <th>Rest Name</th>
+                            <th>Rest Mobile No</th>
+                            <th>Rest Email Id</th>
+                            <th>Rest Address</th>
+                            <th>Rest Description</th>
+
+
+                        </tr>
+                    </thead>
+
+            </center>
+            @foreach (var item in ViewData["block"] as List<Project.EDM.tblRestuarantRegistration>)
+            {
+                <tr>
+
+                    <th scope="row">@item.r_id</th>
+                    <th scope="row">@item.r_name</th>
+                    <th scope="row">@item.r_mobileno</th>
+                    <th scope="row">@item.r_emailid</th>
+                    <th scope="row">@item.r_address</th>
+                    <th scope="row">@item.r_description</th>
+                    <td>
+                        <a href="/Admin/delrest/@item.r_id">
+
+                            <b>
+                                <label class="switch">
+                                    <input type="checkbox" id="d2">
+                                    <div class="slider round"></div>
+                                </label>
+                            </b>
+                        </a>
+                    </td>
+
+                </tr>
+                <input type="hidden" value="@item.r_id" id="b2" />
+
+            }
+
+            </table>
+            <input type="hidden" id="blocked" value="">
+            <style>
+                .switch {
+                    position: relative;
+                    display: inline-block;
+                    width: 60px;
+                    height: 34px;
+                }
+
+                    .switch input {
+                        display: none;
+                    }
+
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #ccc;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                    .slider:before {
+                        position: absolute;
+                        content: "";
+                        height: 26px;
+                        width: 26px;
+                        left: 4px;
+                        bottom: 4px;
+                        background-color: white;
+                        -webkit-transition: .4s;
+                        transition: .4s;
+                    }
+
+                input:checked + .slider {
+                    background-color: #2196F3;
+                }
+
+                input:focus + .slider {
+                    box-shadow: 0 0 1px #2196F3;
+                }
+
+                input:checked + .slider:before {
+                    -webkit-transform: translateX(26px);
+                    -ms-transform: translateX(26px);
+                    transform: translateX(26px);
+                }
+
+                /* Rounded sliders */
+                .slider.round {
+                    border-radius: 34px;
+                }
+
+                    .slider.round:before {
+                        border-radius: 50%;
+                    }
+            </style>
+
+
+
+
+
+
+        </div>
+        <script type="text/javascript">
+
+
+            $(document).ready(function () {
+                $('#d1').click(function () {
+
+
+
+
+                    if ($('#blocked').val() == "1") {
+                        $('#blocked').val("0");
+
+                        var bl = $('#bl').val();
+
+                        window.location.href = "/Admin/delrest/" + bl;
+
+                        $('#d1').val("off");
+
+
+                    }
+                    else {
+                        alert("else");
+                        $('#blocked').val("1");
+
+                        var b2 = $('#b2').val();
+
+                        window.location.href = "/Admin/allowrest/"+b2;
+
+                        $('#d2').val("on");
+
+
+
+                    }
+
+
+                });
+            });
+
+
+        </script>*@

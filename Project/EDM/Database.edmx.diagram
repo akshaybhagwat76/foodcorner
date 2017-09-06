@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e72f405a68d3483cb4d4e9ae5ecc614d" Name="Diagram1">
+        <EntityTypeShape EntityType="RestaurantDBModel.tblAdmin" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblArea" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblBuynow" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblCart" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblCategory" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblCity" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblDeliveryAssign" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblDeliveryboy" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblFood" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblOrder" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblPayment" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblRestuarantRegistration" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblReview" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblSpecial" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblState" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblSubcategory" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblUser" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblDeliveryAssign_tblDeliveryboy" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblDeliveryAssign_tblRestuarantRegistration" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblReviews_tblRestuarantRegistration" ManuallyRouted="false" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblReviews_tblUsers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

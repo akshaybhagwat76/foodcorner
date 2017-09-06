@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "adminindex";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("adminindex","Admin")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+
+                <!-- quick email widget -->
+                @using Project.EDM;
+
+                @{
+                    ViewBag.Title = "cat";
+
+                }
+
+                <!--banner-->
+                <div class="banner">
+                    <h2>
+                        <a href="@Url.Action("adminindex","Admin")">Details of subcategories</a>
+
+                    </h2>
+                </div>
+                <!--//banner-->
+                @using (Html.BeginForm())
+                {
+
+
+                    var item = ViewData["dtl"] as Project.EDM.tblSubcategory;
+                    var temp = TempData["temp"] as Project.Controllers.foods;
+                    <div class="form-control">
+                        <label class="header">subCategory Name :</label>
+                        <label id="firstname" name="cname"> @item.subcategory_name</label>
+                    </div>
+                    <br />
+                    
+                    <div class="form-control">
+                        <label class="header">subCategory Code :</label>
+                        <label id="email" name="ngo_descr">@item.subcategory_code</label>
+                    </div>
+                    <br />
+
+                    <div class="form-control">
+                        <label class="header">subCategory Price:</label>
+                        <label class="lock" name="ngo_email">@item.subcategory_price</label>
+                    </div>
+                    <br />
+                    @*<div class="form-control">
+                        <label class="header">Category name:</label>
+                        <label class="lock" name="cname">@temp.category_name</label>
+                    </div>
+                    <br />*@
+                    <div class="form-control" style="height:100px;">
+                        <label class="header" style="width:1000px;">subCategory Image:</label>
+                        <th><img src='@Url.Content("~/catimg/"+item.subcategory_image)' width="120" height="50" /></th>
+                    </div>
+                    @Html.ActionLink("Back to categories", "subcategory");
+                    <br />
+
+                }
+
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

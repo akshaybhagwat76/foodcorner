@@ -1,0 +1,173 @@
+﻿@using Project.EDM;
+@{
+    ViewBag.Title = "viewcart";
+    Layout = "~/Views/Shared/User.cshtml";
+}
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+
+        var c = "";
+
+
+
+        $(document).on('change', 'input', function () {
+            var t = $(this).attr("id");
+            var gt = 0;
+
+            // alert(t);
+            var qty = $("#" + t).val();
+            // alert(qty);
+            var lastChar = t.substr(t.length - 1);
+            var pric = "oprice" + lastChar;
+            // alert(pric);
+            var price = $("#" + pric).val();
+            // alert(price);
+            var tot = "total" + lastChar;
+            //   alert(tot);
+            // alert(price * qty);
+            gt = gt + (price * qty);
+            $("#" + tot).val(price * qty);
+
+            $("#gtot").val(gt);
+            var cc = $("#cnt").val();
+            gt = 0;
+            for (var i = 0; i < cc; i++) {
+
+
+                var tot = "total" + i;
+                var temp = $("#" + total).val();
+
+
+                gt = gt + parseInt(temp);
+
+            }
+            // alert(gt);
+
+            //alert(gt);
+            $("#gtot").val(gt);
+
+        });
+
+
+        $("#txtqty").change(function () {
+
+            var price = $("#oprice").val();
+            var qty = $("#txtqty").val();
+            alert(price * qty);
+
+            $("#total").val(price * qty);
+        });
+
+    });
+</script>
+
+
+<!-- check out -->
+
+    <!-- check out -->
+    <div class="checkout">
+        <div class="container">
+            @{
+                    int i = 0;
+                    int total = 0;
+                    int oid;
+                    var cnt = ViewData["buynow"] as List<Project.EDM.tblFood>;
+        
+
+            }
+@using (Html.BeginForm("buynow", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
+        <table class="timetable_sub">
+            <thead>
+                <tr>
+
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tr class="rem1">
+
+                <div class="rem">
+                    <div class="close1"> </div>
+                </div>
+                <script>
+                    $(document).ready(function (c) {
+                        $('.close1').on('click', function (c) {
+                            $('.rem1').fadeOut('slow', function (c) {
+                                $('.rem1').remove();
+                            });
+                        });
+                    });
+                </script>
+
+                @foreach (var item in ViewData["buynow"] as List<Project.EDM.tblFood>)
+                {
+                    <input type="hidden" name="rid" value="@item.r_id">
+
+                    <input type="hidden" id="hdnid" name="oid" value="@item.f_id" />
+                    <input type="hidden" name="hd" value="" />
+                    <input type="hidden" name="i" value="@i" />
+
+                 
+                    <td class="invert-image"><a href="single.html"><img src="~/fdimg/@item.f_image" alt=" " class="img-responsive" /></a></td>
+                    <td class="invert">
+                        <div class="quantity">
+                            <span><input type="number"  min="1"  class="entry" name="txtqty@(i)" id="txtqty@(i)" value="1" size="5" /></span>
+
+                        </div>
+                    </td>
+                    <td class="invert"><font color="orange" size="+3"><b>@item.f_name</b></font></td>
+                    <td class="invert"><font color="orange" size="+1"><b><input type="text" name="price@(i)" id="oprice@(i)" value="@item.f_price" size="5"></b></font></td>
+                    <td class="invert"><font color="orange" size="+1"><b><input type="text" name="tot@(i)" id="total@(i)" value="@item.f_price" style="border:hidden" /></b></font></td>
+                    }
+            </tr>
+
+
+            @*@{
+                RestuarantEntities17 shu = new RestuarantEntities17();
+                int id1 = int.Parse(Session["userlogin"].ToString());
+                                    var s = shu.tblUsers.Where(c => c.user_id == id1).FirstOrDefault();
+                                    Session["add"] = s.user_address;
+                string add = Session["add"].ToString();
+                                }
+                                <span>@add</span>*@
+        </table>
+        <div>
+            <div id="checkout-shipping" style="display: block;">
+                <h2 class="heading">2. Delivery Address</h2>
+                </div>
+            </div>
+                @{
+                    RestaurantDBEntities shu = new RestaurantDBEntities();
+                    int id1 = int.Parse(Session["userlogin"].ToString());
+                    var s = shu.tblUsers.Where(c => c.user_id == id1).FirstOrDefault();
+                    Session["add"] = s.user_address;
+                    Session["mb"] = s.user_mobile;
+                    string add = Session["add"].ToString();
+                    string mb = Session["mb"].ToString();
+                }
+        <br />
+                <input type="text"  name="add" value="@add" />
+      <br />
+                  <input type="text" name="mb" value="@mb" maxlength="10" />
+      
+                <div class="checkout-left">
+
+                    <input type="submit" value="Place Order" class="btn btn-success" />
+
+
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+            }
+        </div>
+    </div>

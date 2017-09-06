@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "adminindex";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("adminindex","Admin")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+
+                <!-- quick email widget -->
+                @using Project.EDM;
+
+                @{
+                    ViewBag.Title = "cat";
+
+                }
+
+                <!--banner-->
+                <div class="banner">
+                    <h2>
+                        <a href="@Url.Action("adminindex","Admin")">Details of categories</a>
+
+                    </h2>
+                </div>
+                <!--//banner-->
+                
+                @using (Html.BeginForm())
+                {
+
+
+                    var item = ViewData["dtl"] as Project.EDM.tblCategory;
+
+                    <div class="form-control">
+                        <label class="header">Category Name :</label>
+                        <label id="firstname" name="cname"> @item.category_name</label>
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <label class="header">Category Image :</label>
+                        <label name="cimage">@item.category_image</label>
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <label class="header">Category Code :</label>
+                        <label id="email" name="ngo_descr">@item.category_code</label>
+                    </div>
+                    <br />
+              
+                    <div class="form-control">
+                        <label class="header">Category Price:</label>
+                        <label class="lock" name="ngo_email">@item.category_price</label>
+                    </div>
+                    <br />
+                   
+                    <div class="form-control" style="height:100px;">
+                        <label class="header" style="width:1000px;">Category Image:</label>
+                        <th><img src='@Url.Content("~/catimg/"+item.category_image)' width="120" height="50" /></th>
+                    </div>
+                    @Html.ActionLink("Back to categories", "category");
+                    <br />
+
+                }
+
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

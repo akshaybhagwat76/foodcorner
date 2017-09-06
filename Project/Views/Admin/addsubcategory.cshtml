@@ -1,0 +1,80 @@
+﻿
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("adminindex","Admin")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <style>
+                .row {
+                    width: 1000px;
+                }
+            </style>
+            <!-- working column -->
+
+            <section class="col-lg-7 connectedSortable">
+
+                @model Project.EDM.tblSubcategory
+
+                @{
+                    ViewBag.Title = "addsubcategory";
+                    Layout = "~/Views/Shared/Admin.cshtml";
+                }
+
+                @Html.ActionLink("View all sub category", "subcategory", "Admin")
+                <h2>Add SubCategory</h2>
+
+                @using (Html.BeginForm("addsubcategory", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+
+                    <input type="text" placeholder="SubCategory Name" name="cname" required="" class="form-control" />
+                    <br />
+
+                        <input type="text" placeholder="SubCategory Code" name="ccode" required="" class="form-control" />
+                    <br />
+                    <input type="file" name="file" id="file" required="" class="form-control" />
+                    <br />
+                        <input type="text" placeholder="Sub Category Price" name="cprice" required="" class="form-control" />
+                    <br />
+                    
+                    <select name="cid">
+                        @foreach (var item in ViewData["p1"] as List<Project.EDM.tblCategory>)
+	                    {
+		                     <option value="@item.c_id">@item.category_name</option>
+	                    }
+                    </select>
+                    <br />
+                    <br />
+    
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Add</button>
+
+
+                }
+        </div>
+        @*<div>
+                @Html.ActionLink("Back to List", "category")
+            </div>*@
+
+
+
+    </section>
+
+
+    <!-- /.row (main row) -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

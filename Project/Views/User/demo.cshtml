@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "demo";
+    Layout = "~/Views/Shared/User.cshtml";
+}
+
+<center>
+    
+
+    <table class="table">
+        <center>
+            <thead>
+                <tr>
+
+        
+                    <th>Food Name</th>
+                    
+                    <th>food desciption</th>
+                    <th>food Price</th>
+                    <th></th>
+                    <th></th>
+                    <th><font color="red">ACTIONS</font></th>
+                </tr>
+            </thead>
+
+            @foreach (var item in ViewData["f"] as List<Project.EDM.tblFood>)
+            {
+                <center>
+                    <tr>
+                       
+                        <th>@item.f_name</th>
+                        <th>@item.f_price</th>
+                        <th>@item.f_description</th>
+                     
+                        <th></th>
+                        <th></th>
+
+                       
+
+
+                    </tr>
+                </center>
+
+            }
+
+    </table>
+</center>
+
+
+}
+</table>

@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>datapicker</title>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Content/admin page design/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#dt").datepicker({
+                appendText: 'mm/dd/yyyy',
+                showOn: 'both', //show button
+                buttonText: 'Calender', //text on show on button
+                numberOfMonths: 2, //show nos of months
+                changeMonth: true,
+                changeYear: true,
+                minDate: 0,
+                maxDate :'+20D',
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <b><input type="text" id="dt" /></b>
+</body>
+</html>
+
+
+
+
+

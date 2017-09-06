@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RestaurantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="a_name" Type="varchar(max)" />
+          <Property Name="a_email" Type="varchar(max)" />
+          <Property Name="a_password" Type="varchar(max)" />
+          <Property Name="a_address" Type="varchar(max)" />
+          <Property Name="a_mobile" Type="varchar(max)" />
+          <Property Name="a_photo" Type="image" />
+        </EntityType>
+        <EntityType Name="tblArea">
+          <Key>
+            <PropertyRef Name="a_id" />
+          </Key>
+          <Property Name="a_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="s_id" Type="int" />
+          <Property Name="a_name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblBuynow">
+          <Key>
+            <PropertyRef Name="buy_id" />
+          </Key>
+          <Property Name="buy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f_id" Type="int" />
+          <Property Name="qty" Type="float" />
+          <Property Name="o_id" Type="int" />
+          <Property Name="amt" Type="float" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_id" Type="int" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="qty" Type="float" />
+          <Property Name="o_id" Type="int" />
+          <Property Name="amt" Type="float" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="f_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="varchar(max)" />
+          <Property Name="category_code" Type="varchar(max)" />
+          <Property Name="category_image" Type="varchar(max)" />
+          <Property Name="category_price" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_id" Type="int" />
+          <Property Name="c_name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblDeliveryAssign">
+          <Key>
+            <PropertyRef Name="assignid" />
+          </Key>
+          <Property Name="assignid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderid" Type="int" />
+          <Property Name="db_id" Type="int" />
+          <Property Name="r_id" Type="int" />
+          <Property Name="da_date" Type="date" />
+        </EntityType>
+        <EntityType Name="tblDeliveryboy">
+          <Key>
+            <PropertyRef Name="db_id" />
+          </Key>
+          <Property Name="db_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="db_name" Type="varchar(max)" />
+          <Property Name="db_mobile" Type="varchar(max)" />
+          <Property Name="r_id" Type="int" />
+          <Property Name="db_status" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblFoods">
+          <Key>
+            <PropertyRef Name="f_id" />
+          </Key>
+          <Property Name="f_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f_name" Type="varchar(max)" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="s_id" Type="int" />
+          <Property Name="f_price" Type="int" />
+          <Property Name="f_date" Type="date" />
+          <Property Name="f_image" Type="varchar(max)" />
+          <Property Name="f_description" Type="varchar(max)" />
+          <Property Name="r_id" Type="int" />
+          <Property Name="f_status" Type="int" />
+          <Property Name="offer_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblOrders">
+          <Key>
+            <PropertyRef Name="serial_no" />
+          </Key>
+          <Property Name="serial_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="o_id" Type="int" />
+          <Property Name="f_id" Type="int" />
+          <Property Name="o_userid" Type="int" />
+          <Property Name="o_quantity" Type="varchar(max)" />
+          <Property Name="o_date" Type="date" />
+          <Property Name="o_status" Type="varchar(max)" />
+          <Property Name="o_price" Type="int" />
+          <Property Name="r_id" Type="int" />
+          <Property Name="offer_id" Type="int" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="payment_mode" Type="varchar(max)" />
+          <Property Name="payment_status" Type="varchar(max)" />
+          <Property Name="total_amount" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="payment_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblRestuarantRegistration">
+          <Key>
+            <PropertyRef Name="r_id" />
+          </Key>
+          <Property Name="r_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="r_name" Type="varchar(max)" />
+          <Property Name="r_mobileno" Type="varchar(max)" />
+          <Property Name="r_emailid" Type="varchar(max)" />
+          <Property Name="r_address" Type="varchar(max)" />
+          <Property Name="r_description" Type="varchar(max)" />
+          <Property Name="r_status" Type="varchar(max)" />
+          <Property Name="rest_image" Type="varchar(max)" />
+          <Property Name="r_pwd" Type="varchar(max)" />
+          <Property Name="r_lastdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblReviews">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="r_id" Type="int" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="rating" Type="float" />
+        </EntityType>
+        <EntityType Name="tblSpecials">
+          <Key>
+            <PropertyRef Name="offer_id" />
+          </Key>
+          <Property Name="offer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="offer_image" Type="nvarchar(max)" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="r_id" Type="int" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="status" Type="nvarchar(max)" />
+          <Property Name="offer_price" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="offer_desc" Type="nvarchar(max)" />
+          <Property Name="f_name" Type="nvarchar(max)" />
+          <Property Name="offer_name" Type="nvarchar(max)" />
+          <Property Name="oldprice" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblSubcategory">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subcategory_name" Type="varchar(max)" />
+          <Property Name="subcategory_code" Type="varchar(max)" />
+          <Property Name="subcategory_image" Type="varchar(max)" />
+          <Property Name="subcategory_price" Type="varchar(max)" />
+          <Property Name="c_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar(max)" />
+          <Property Name="user_mobile" Type="varchar(max)" />
+          <Property Name="user_email" Type="varchar(max)" />
+          <Property Name="user_address" Type="varchar(max)" />
+          <Property Name="user_status" Type="varchar(max)" />
+          <Property Name="user_pwd" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_tblDeliveryAssign_tblDeliveryboy">
+          <End Role="tblDeliveryboy" Type="Self.tblDeliveryboy" Multiplicity="0..1" />
+          <End Role="tblDeliveryAssign" Type="Self.tblDeliveryAssign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDeliveryboy">
+              <PropertyRef Name="db_id" />
+            </Principal>
+            <Dependent Role="tblDeliveryAssign">
+              <PropertyRef Name="db_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDeliveryAssign_tblRestuarantRegistration">
+          <End Role="tblRestuarantRegistration" Type="Self.tblRestuarantRegistration" Multiplicity="0..1" />
+          <End Role="tblDeliveryAssign" Type="Self.tblDeliveryAssign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRestuarantRegistration">
+              <PropertyRef Name="r_id" />
+            </Principal>
+            <Dependent Role="tblDeliveryAssign">
+              <PropertyRef Name="r_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReviews_tblRestuarantRegistration">
+          <End Role="tblRestuarantRegistration" Type="Self.tblRestuarantRegistration" Multiplicity="0..1" />
+          <End Role="tblReviews" Type="Self.tblReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRestuarantRegistration">
+              <PropertyRef Name="r_id" />
+            </Principal>
+            <Dependent Role="tblReviews">
+              <PropertyRef Name="r_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReviews_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblReviews" Type="Self.tblReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tblReviews">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestaurantDBModelStoreContainer">
+          <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblArea" EntityType="Self.tblArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBuynow" EntityType="Self.tblBuynow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCart" EntityType="Self.tblCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDeliveryAssign" EntityType="Self.tblDeliveryAssign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDeliveryboy" EntityType="Self.tblDeliveryboy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFoods" EntityType="Self.tblFoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrders" EntityType="Self.tblOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPayment" EntityType="Self.tblPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRestuarantRegistration" EntityType="Self.tblRestuarantRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReviews" EntityType="Self.tblReviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSpecials" EntityType="Self.tblSpecials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubcategory" EntityType="Self.tblSubcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblDeliveryAssign_tblDeliveryboy" Association="Self.FK_tblDeliveryAssign_tblDeliveryboy">
+            <End Role="tblDeliveryboy" EntitySet="tblDeliveryboy" />
+            <End Role="tblDeliveryAssign" EntitySet="tblDeliveryAssign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDeliveryAssign_tblRestuarantRegistration" Association="Self.FK_tblDeliveryAssign_tblRestuarantRegistration">
+            <End Role="tblRestuarantRegistration" EntitySet="tblRestuarantRegistration" />
+            <End Role="tblDeliveryAssign" EntitySet="tblDeliveryAssign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReviews_tblRestuarantRegistration" Association="Self.FK_tblReviews_tblRestuarantRegistration">
+            <End Role="tblRestuarantRegistration" EntitySet="tblRestuarantRegistration" />
+            <End Role="tblReviews" EntitySet="tblReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReviews_tblUsers" Association="Self.FK_tblReviews_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblReviews" EntitySet="tblReviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestaurantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="a_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="a_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="a_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="a_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="a_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="a_photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblArea">
+          <Key>
+            <PropertyRef Name="a_id" />
+          </Key>
+          <Property Name="a_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_id" Type="Int32" />
+          <Property Name="s_id" Type="Int32" />
+          <Property Name="a_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblBuynow">
+          <Key>
+            <PropertyRef Name="buy_id" />
+          </Key>
+          <Property Name="buy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f_id" Type="Int32" />
+          <Property Name="qty" Type="Double" />
+          <Property Name="o_id" Type="Int32" />
+          <Property Name="amt" Type="Double" />
+          <Property Name="user_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_id" Type="Int32" />
+          <Property Name="c_id" Type="Int32" />
+          <Property Name="qty" Type="Double" />
+          <Property Name="o_id" Type="Int32" />
+          <Property Name="amt" Type="Double" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="f_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="category_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="category_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="category_price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_id" Type="Int32" />
+          <Property Name="c_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDeliveryAssign">
+          <Key>
+            <PropertyRef Name="assignid" />
+          </Key>
+          <Property Name="assignid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderid" Type="Int32" />
+          <Property Name="db_id" Type="Int32" />
+          <Property Name="r_id" Type="Int32" />
+          <Property Name="da_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblDeliveryboy" Relationship="Self.FK_tblDeliveryAssign_tblDeliveryboy" FromRole="tblDeliveryAssign" ToRole="tblDeliveryboy" />
+          <NavigationProperty Name="tblRestuarantRegistration" Relationship="Self.FK_tblDeliveryAssign_tblRestuarantRegistration" FromRole="tblDeliveryAssign" ToRole="tblRestuarantRegistration" />
+        </EntityType>
+        <EntityType Name="tblDeliveryboy">
+          <Key>
+            <PropertyRef Name="db_id" />
+          </Key>
+          <Property Name="db_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="db_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="db_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_id" Type="Int32" />
+          <Property Name="db_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblDeliveryAssigns" Relationship="Self.FK_tblDeliveryAssign_tblDeliveryboy" FromRole="tblDeliveryboy" ToRole="tblDeliveryAssign" />
+        </EntityType>
+        <EntityType Name="tblFood">
+          <Key>
+            <PropertyRef Name="f_id" />
+          </Key>
+          <Property Name="f_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="c_id" Type="Int32" />
+          <Property Name="s_id" Type="Int32" />
+          <Property Name="f_price" Type="Int32" />
+          <Property Name="f_date" Type="DateTime" Precision="0" />
+          <Property Name="f_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="f_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_id" Type="Int32" />
+          <Property Name="f_status" Type="Int32" />
+          <Property Name="offer_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="serial_no" />
+          </Key>
+          <Property Name="serial_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="o_id" Type="Int32" />
+          <Property Name="f_id" Type="Int32" />
+          <Property Name="o_userid" Type="Int32" />
+          <Property Name="o_quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="o_date" Type="DateTime" Precision="0" />
+          <Property Name="o_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="o_price" Type="Int32" />
+          <Property Name="r_id" Type="Int32" />
+          <Property Name="offer_id" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" />
+          <Property Name="payment_mode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="payment_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="total_amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="payment_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblRestuarantRegistration">
+          <Key>
+            <PropertyRef Name="r_id" />
+          </Key>
+          <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="r_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_mobileno" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_emailid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rest_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="r_lastdate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblDeliveryAssigns" Relationship="Self.FK_tblDeliveryAssign_tblRestuarantRegistration" FromRole="tblRestuarantRegistration" ToRole="tblDeliveryAssign" />
+          <NavigationProperty Name="tblReviews" Relationship="Self.FK_tblReviews_tblRestuarantRegistration" FromRole="tblRestuarantRegistration" ToRole="tblReviews" />
+        </EntityType>
+        <EntityType Name="tblReview">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="r_id" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rating" Type="Double" />
+          <NavigationProperty Name="tblRestuarantRegistration" Relationship="Self.FK_tblReviews_tblRestuarantRegistration" FromRole="tblReviews" ToRole="tblRestuarantRegistration" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblReviews_tblUsers" FromRole="tblReviews" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblSpecial">
+          <Key>
+            <PropertyRef Name="offer_id" />
+          </Key>
+          <Property Name="offer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="offer_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="c_id" Type="Int32" />
+          <Property Name="r_id" Type="Int32" />
+          <Property Name="start_date" Type="DateTime" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="offer_price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="offer_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="offer_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="oldprice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSubcategory">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subcategory_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="subcategory_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="subcategory_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="subcategory_price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="c_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblReviews" Relationship="Self.FK_tblReviews_tblUsers" FromRole="tblUsers" ToRole="tblReviews" />
+        </EntityType>
+        <Association Name="FK_tblDeliveryAssign_tblDeliveryboy">
+          <End Role="tblDeliveryboy" Type="Self.tblDeliveryboy" Multiplicity="0..1" />
+          <End Role="tblDeliveryAssign" Type="Self.tblDeliveryAssign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDeliveryboy">
+              <PropertyRef Name="db_id" />
+            </Principal>
+            <Dependent Role="tblDeliveryAssign">
+              <PropertyRef Name="db_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDeliveryAssign_tblRestuarantRegistration">
+          <End Role="tblRestuarantRegistration" Type="Self.tblRestuarantRegistration" Multiplicity="0..1" />
+          <End Role="tblDeliveryAssign" Type="Self.tblDeliveryAssign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRestuarantRegistration">
+              <PropertyRef Name="r_id" />
+            </Principal>
+            <Dependent Role="tblDeliveryAssign">
+              <PropertyRef Name="r_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReviews_tblRestuarantRegistration">
+          <End Role="tblRestuarantRegistration" Type="Self.tblRestuarantRegistration" Multiplicity="0..1" />
+          <End Role="tblReviews" Type="Self.tblReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRestuarantRegistration">
+              <PropertyRef Name="r_id" />
+            </Principal>
+            <Dependent Role="tblReviews">
+              <PropertyRef Name="r_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReviews_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblReviews" Type="Self.tblReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="tblReviews">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestaurantDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAdmins" EntityType="Self.tblAdmin" />
+          <EntitySet Name="tblAreas" EntityType="Self.tblArea" />
+          <EntitySet Name="tblBuynows" EntityType="Self.tblBuynow" />
+          <EntitySet Name="tblCarts" EntityType="Self.tblCart" />
+          <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+          <EntitySet Name="tblCities" EntityType="Self.tblCity" />
+          <EntitySet Name="tblDeliveryAssigns" EntityType="Self.tblDeliveryAssign" />
+          <EntitySet Name="tblDeliveryboys" EntityType="Self.tblDeliveryboy" />
+          <EntitySet Name="tblFoods" EntityType="Self.tblFood" />
+          <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+          <EntitySet Name="tblPayments" EntityType="Self.tblPayment" />
+          <EntitySet Name="tblRestuarantRegistrations" EntityType="Self.tblRestuarantRegistration" />
+          <EntitySet Name="tblReviews" EntityType="Self.tblReview" />
+          <EntitySet Name="tblSpecials" EntityType="Self.tblSpecial" />
+          <EntitySet Name="tblStates" EntityType="Self.tblState" />
+          <EntitySet Name="tblSubcategories" EntityType="Self.tblSubcategory" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK_tblDeliveryAssign_tblDeliveryboy" Association="Self.FK_tblDeliveryAssign_tblDeliveryboy">
+            <End Role="tblDeliveryboy" EntitySet="tblDeliveryboys" />
+            <End Role="tblDeliveryAssign" EntitySet="tblDeliveryAssigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDeliveryAssign_tblRestuarantRegistration" Association="Self.FK_tblDeliveryAssign_tblRestuarantRegistration">
+            <End Role="tblRestuarantRegistration" EntitySet="tblRestuarantRegistrations" />
+            <End Role="tblDeliveryAssign" EntitySet="tblDeliveryAssigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReviews_tblRestuarantRegistration" Association="Self.FK_tblReviews_tblRestuarantRegistration">
+            <End Role="tblRestuarantRegistration" EntitySet="tblRestuarantRegistrations" />
+            <End Role="tblReviews" EntitySet="tblReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReviews_tblUsers" Association="Self.FK_tblReviews_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblReviews" EntitySet="tblReviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RestaurantDBModelStoreContainer" CdmEntityContainer="RestaurantDBEntities">
+          <EntitySetMapping Name="tblAdmins">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblAdmin">
+              <MappingFragment StoreEntitySet="tblAdmin">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="a_name" ColumnName="a_name" />
+                <ScalarProperty Name="a_email" ColumnName="a_email" />
+                <ScalarProperty Name="a_password" ColumnName="a_password" />
+                <ScalarProperty Name="a_address" ColumnName="a_address" />
+                <ScalarProperty Name="a_mobile" ColumnName="a_mobile" />
+                <ScalarProperty Name="a_photo" ColumnName="a_photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAreas">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblArea">
+              <MappingFragment StoreEntitySet="tblArea">
+                <ScalarProperty Name="a_id" ColumnName="a_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="a_name" ColumnName="a_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBuynows">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblBuynow">
+              <MappingFragment StoreEntitySet="tblBuynow">
+                <ScalarProperty Name="buy_id" ColumnName="buy_id" />
+                <ScalarProperty Name="f_id" ColumnName="f_id" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="o_id" ColumnName="o_id" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarts">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblCart">
+              <MappingFragment StoreEntitySet="tblCart">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="o_id" ColumnName="o_id" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="f_id" ColumnName="f_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategories">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategory">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="category_code" ColumnName="category_code" />
+                <ScalarProperty Name="category_image" ColumnName="category_image" />
+                <ScalarProperty Name="category_price" ColumnName="category_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="c_name" ColumnName="c_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDeliveryAssigns">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblDeliveryAssign">
+              <MappingFragment StoreEntitySet="tblDeliveryAssign">
+                <ScalarProperty Name="assignid" ColumnName="assignid" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="db_id" ColumnName="db_id" />
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="da_date" ColumnName="da_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDeliveryboys">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblDeliveryboy">
+              <MappingFragment StoreEntitySet="tblDeliveryboy">
+                <ScalarProperty Name="db_id" ColumnName="db_id" />
+                <ScalarProperty Name="db_name" ColumnName="db_name" />
+                <ScalarProperty Name="db_mobile" ColumnName="db_mobile" />
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="db_status" ColumnName="db_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFoods">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblFood">
+              <MappingFragment StoreEntitySet="tblFoods">
+                <ScalarProperty Name="f_id" ColumnName="f_id" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="f_price" ColumnName="f_price" />
+                <ScalarProperty Name="f_date" ColumnName="f_date" />
+                <ScalarProperty Name="f_image" ColumnName="f_image" />
+                <ScalarProperty Name="f_description" ColumnName="f_description" />
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="f_status" ColumnName="f_status" />
+                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrders">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblOrder">
+              <MappingFragment StoreEntitySet="tblOrders">
+                <ScalarProperty Name="serial_no" ColumnName="serial_no" />
+                <ScalarProperty Name="o_id" ColumnName="o_id" />
+                <ScalarProperty Name="f_id" ColumnName="f_id" />
+                <ScalarProperty Name="o_userid" ColumnName="o_userid" />
+                <ScalarProperty Name="o_quantity" ColumnName="o_quantity" />
+                <ScalarProperty Name="o_date" ColumnName="o_date" />
+                <ScalarProperty Name="o_status" ColumnName="o_status" />
+                <ScalarProperty Name="o_price" ColumnName="o_price" />
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPayments">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblPayment">
+              <MappingFragment StoreEntitySet="tblPayment">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="payment_mode" ColumnName="payment_mode" />
+                <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+                <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRestuarantRegistrations">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblRestuarantRegistration">
+              <MappingFragment StoreEntitySet="tblRestuarantRegistration">
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="r_name" ColumnName="r_name" />
+                <ScalarProperty Name="r_mobileno" ColumnName="r_mobileno" />
+                <ScalarProperty Name="r_emailid" ColumnName="r_emailid" />
+                <ScalarProperty Name="r_address" ColumnName="r_address" />
+                <ScalarProperty Name="r_description" ColumnName="r_description" />
+                <ScalarProperty Name="r_status" ColumnName="r_status" />
+                <ScalarProperty Name="rest_image" ColumnName="rest_image" />
+                <ScalarProperty Name="r_pwd" ColumnName="r_pwd" />
+                <ScalarProperty Name="r_lastdate" ColumnName="r_lastdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReviews">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblReview">
+              <MappingFragment StoreEntitySet="tblReviews">
+                <ScalarProperty Name="review_id" ColumnName="review_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSpecials">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblSpecial">
+              <MappingFragment StoreEntitySet="tblSpecials">
+                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
+                <ScalarProperty Name="offer_image" ColumnName="offer_image" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="offer_price" ColumnName="offer_price" />
+                <ScalarProperty Name="offer_desc" ColumnName="offer_desc" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="offer_name" ColumnName="offer_name" />
+                <ScalarProperty Name="oldprice" ColumnName="oldprice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="s_name" ColumnName="s_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSubcategories">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblSubcategory">
+              <MappingFragment StoreEntitySet="tblSubcategory">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="subcategory_name" ColumnName="subcategory_name" />
+                <ScalarProperty Name="subcategory_code" ColumnName="subcategory_code" />
+                <ScalarProperty Name="subcategory_image" ColumnName="subcategory_image" />
+                <ScalarProperty Name="subcategory_price" ColumnName="subcategory_price" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="RestaurantDBModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="user_status" ColumnName="user_status" />
+                <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,120 @@
+﻿@using Project.EDM;
+@model List<tblCategory>
+
+@{
+
+    ViewBag.Title = "adminindex";
+    Layout = "~/Views/Shared/Admin.cshtml";
+
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("adminindex","Admin")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <div class="banner">
+        <h2>
+            <a href="@Url.Action("adminindex","Admin")">Home</a><br />
+            <a href="@Url.Action("addcategory","Admin")">Add Category</a>
+        </h2>
+    </div>
+
+    foreach (var item in Model)
+    {
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+           
+            <!-- Main content -->
+            <section class="content">
+                <!-- Small boxes (Stat box) -->
+                <!-- /.row -->
+                <!-- Main row -->
+                <div class="row">
+                    <style>
+                        .row {
+                            width: 1000px;
+                        }
+                    </style>
+                    <!-- Left col -->
+                    <section class="col-lg-7 connectedSortable">
+
+                        <!-- quick email widget -->
+                        @using Project.EDM;
+
+                        @{
+        ViewBag.Title = "cat";
+
+                        }
+
+                        <!--banner-->
+                          <!--//banner-->
+                        <center>
+                            <center><h2>Sub Category View</h2></center>
+
+
+                            <table class="table">
+
+
+                                @*<tr>
+                                        <td>
+                                            Search : <input type="text" id="txt" /><input type="button" value="search" id="btn" />
+                                            <input type="button" value="Get All Users" id="btn1" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div id="update">
+
+                                            </div>
+                                        </td>
+                                    </tr>*@
+                                <tr>
+
+                                    <th>Category ID</th>
+                                    <th>Category Name</th>
+                                    <th>Category Code</th>
+                                    <th>Category Image </th>
+                                    <th>Category Price</th>
+
+                                </tr>
+
+                                
+                                {
+
+                                    <tr>
+                                        <th>@item.c_id</th>
+                                        <th>@item.category_name</th>
+                                        <th>@item.category_code</th>
+                                        <th><img src='@Url.Content("~/catimg/"+item.category_image)' /></th>
+                                        <th>@item.category_price</th>
+
+
+
+                                        <th>@Html.ActionLink("Edit", "edit_category", new { id = item.c_id })</th>
+                                        <th>@Html.ActionLink("Delete", "delete_category", new { id = item.c_id })</th>
+                                        <th>@Html.ActionLink("Details", "detail_category", new { id = item.c_id })</th>
+
+
+
+                                    </tr>
+
+
+                                }
+
+                            </table>
+                        </center>
+
+                    </section>
+
+                </div>
+                <!-- /.row (main row) -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+
+    }
+}

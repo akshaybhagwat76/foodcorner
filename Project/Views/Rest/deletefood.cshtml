@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "deletefood";
+    Layout = "~/Views/Shared/Rest.cshtml";
+}
+
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Rest")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="col-lg-7 connectedSortable">
+
+        <!-- quick email widget -->
+        @using Project.EDM;
+
+        @{
+            ViewBag.Title = "Food Deleted";
+
+        }
+
+        <!--banner-->
+        <div class="banner">
+            <h2>
+                <a href="@Url.Action("Index","Rest")">Home</a>
+
+            </h2>
+        </div>
+        <!--//banner-->
+        <center>
+            <center><h2>Food View</h2></center>
+
+
+            <table class="table">
+                <center>
+                    <thead>
+                        <tr>
+
+                            <th>FOOD ID</th>
+                            <th>FOOD Name</th>
+                            <th>Category Name</th>
+                            <th>SUBCategory Image</th>
+                            <th>FOOD Price</th>
+                            <th>FOOD Date</th>
+                            <th>FOOD Image</th>
+
+                            <th>FOOD Description</th>
+
+
+
+                        </tr>
+                    </thead>
+
+                    @*@foreach (var item in ViewData["del"] as List<Project.EDM.tblCategory>)
+                        {
+                            <center>
+                                <tr>
+                                    <th scope="row">@item.c_id</th>
+                                    <th>@item.category_name</th>
+                                    <th>@item.category_code</th>
+                                    <th>@item.category_image</th>
+                                    <th>@item.category_price</th>
+
+                                    <th>@Html.ActionLink("Edit", "edit_category", new { id = item.c_id })</th>
+                                    <th>@Html.ActionLink("Delete", "delete_category", new { id = item.c_id })</th>
+                                    <th>@Html.ActionLink("Details", "category", new { id = item.c_id })</th>
+
+
+
+                                </tr>
+                            </center>
+
+                        }*@
+
+            </table>
+        </center>
+        </center>
+    </section>
+
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

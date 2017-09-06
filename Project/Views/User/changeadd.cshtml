@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "changeadd";
+    //Layout = "~/Views/Shared/User.cshtml";
+    Layout = null;
+}
+
+<html>
+<head>
+    <link href="~/css/checkoutRevamp.css" rel="stylesheet" />
+</head>
+
+<body>
+    <center>
+        <div>
+            <div id="checkout-shipping" style="display: block;">
+                <h2 class="heading">1. Delivery Address</h2>
+                
+                <div id="address-form" class="no-display" style="display: block;">
+                    <div class="shipping-address">
+                        <div class="heading-container clearfix">
+                            <a href="javascript:void(0)" id="back-to-saved-address" class="sub-heading pull-right" style="display: none;"><i class="sd-icon sd-icon-previous fnt10"></i>Back To Saved Addresses</a>
+                        </div>
+                        <div id="address-form-error-box" class="no-display">
+                            <div class="conflict-wrapper-header">
+                                <span class="circle-error sd-icon sd-icon-error"></span>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div id="buynow-address-form" class="clearfix" style="display: none;">
+                            <i class="sd-icon sd-icon-high-importance warn-icon lfloat"></i>
+                            <div class="buynow-review-data lfloat">
+                                <p class="buynow-message">You don't have an address saved. Please enter an address.</p>
+                            </div>
+                        </div>
+                        <div id="out-of-stock-form">
+                            <div class="out-of-stock-wrapper" style="display:none">
+                                <div class="out-of-stock-wrapper-header">
+                                    <span class="circle-error sd-icon sd-icon-error"></span>
+                                    <p>Sorry! Following item(s) have gone out of stock. Please remove them and continue to checkout.</p>
+                                </div>
+                                <div class="item-listing"></div>
+                            </div>
+                        </div>
+                        <div id="serviceability-form">
+                            <div class="seller-address-conflict-wrapper" style="display:none">
+                                <div class="conflict-wrapper-header">
+                                    <span class="circle-error sd-icon sd-icon-error"></span>
+                                    <p>Sorry! Current seller of the below item(s) does not deliver to your pin code, try changing the address.</p>
+                                </div>
+                                <div class="item-listing"></div>
+                            </div>
+                        </div>
+                      
+                            @using (Html.BeginForm("changeadd", "User", FormMethod.Post, new { id = "shipping-address-form" }))
+                            {
+                                <input type="hidden" name="hid" />
+                            <div class="customer-info">
+                                
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl" for="fullName">Name <span class="require">*</span> </label>
+                                    <input maxlength="128" data-address-field="recipientName" class="inputbox2 col-xs-7" name="fullName" id="fullName" placeholder="Full Name" aria-required="true" type="text">
+                                </div>
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl" for="address">Address <span class="require">*</span></label>
+                                    <textarea name="address" data-address-field="addressLine1" class="inputbox2 col-xs-7 text-area" id="address" placeholder="Flat/House No. Colony/Street No." aria-required="true" name="address"></textarea>
+                                </div>
+                                <div class="row">
+                                    <label class="col-xs-6 form-lbl" for="nearestLandmark">Locality/Landmark</label>
+                                    <input maxlength="400" data-address-field="landmark" class="inputbox2 col-xs-7" name="nearestLandmark" id="nearestLandmark" placeholder="Eg. Near Apollo Hospital" type="text">
+                                    <span class="landmark-tooltip"><i class="sd-icon sd-icon-ic-more"></i></span>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-xs-11 city-suggestion">
+                                        <div class="city-suggestion-box no-display" id="city-suggestion-box" style="display: none;">
+                                            <span>
+                                                <div class="city-suggestion-text">
+                                                    Suggested city for given pincode is "<label id="changeCityText">New Delhi</label>"
+
+                                                    <a title="Change" id="changeCity" style="cursor: pointer;"> Change</a>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <label class="col-xs-6 form-lbl" for="city">City <span class="require">*</span> </label>
+                                    <input maxlength="48" data-address-field="city" class="inputbox2 col-xs-7" name="city" id="city" placeholder="City" type="text">
+                                </div>
+                                <div class="row ">
+                                    <label class="col-xs-6 form-lbl" for="state">State <span class="require">*</span></label>
+                                    <input maxlength="48" data-address-field="state" data-error-block="stateReq" class="inputbox2 col-xs-7" name="state" id="state" placeholder="State" type="text">
+                                </div>
+                            
+                                <div class="row ">
+                                    <label class="col-xs-6 form-lbl" for="state">Mobile <span class="require">*</span></label>
+                                    <input maxlength="48" data-address-field="state" data-error-block="stateReq" class="inputbox2 col-xs-7" name="state" id="state" placeholder="Mobile" type="text">
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-xs-6"></label>
+                                    <button id="delivery-modes-continue" class="rippleWhite btn  col-xs-7" type="button">
+                                        <span class="button-text">SAVE AND CONTINUE</span>
+                                    </button>
+                                </div>
+                            </div>
+                            }
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </center>
+</body>
+
+</html>
