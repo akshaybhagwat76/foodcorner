@@ -1,1 +1,64 @@
 
+$(document).ready(function () {
+
+    
+    $('form').each(function () {
+        $(this).find('input').keypress(function (e) {
+
+            //Enter pressed?
+            if (e.which==10||e.which==13) {
+                $("#btn-submit").click();
+            }
+        });
+    });
+
+    $("#btn-submit").on("click", function () {
+        debugger;
+        var retval = true;
+        $("#myForm .required").each(function () {
+
+            if (!$(this).val()) {
+                $(this).addClass("error");
+                retval = false;
+            }
+            else {
+                $(this).removeClass("error");
+            }
+        });
+
+        var email = $("#t1").val().trim();
+        var pwd = $("#t2").val().trim();
+        if (email&& !isEmail(email)) {
+            $("#t1").addClass("error");
+            retval = false;
+        }
+        if (retval) {
+            var tbl = {
+                r_emailid: email,
+                r_pwd:pwd
+            }
+            $.ajax({
+
+                type: "POST",
+                url: "/Home/restlogin",
+                contentType: 'application/json',
+                data:JSON.stringify(tbl),
+                dataType:"json",
+                success:function(data)
+                {
+                    if (data.url) {
+                        debugger;
+                        window.location = data.url;
+                    }
+                    else {
+                        alert(data);
+                    }
+                }
+            });
+        }
+    });
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+});
